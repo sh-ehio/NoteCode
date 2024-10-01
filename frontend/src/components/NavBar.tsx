@@ -3,9 +3,11 @@ import NoteCodeLogo from "../assets/NoteCodeLogo.svg";
 
 const NavBar = () => {
   return (
-    <div>
-      <div className={styles.logoSection}>
-        <img src={NoteCodeLogo}></img>
+    <div className={styles.nav}>
+      <img src={NoteCodeLogo}></img>
+      <div>
+        <p>Create & Share</p>
+        <p>Your Code easily</p>
       </div>
     </div>
   );
