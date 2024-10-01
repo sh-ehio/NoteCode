@@ -3,4 +3,27 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  row-gap: 15px;
+}
+
+.big_heading,
+.small_heading {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.small_heading {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.big_heading {
+  font-size: 2.5rem;
+  font-weight: 600;
+  padding-top: 10px;
+}
+
+img {
+  padding-top: 2.5%;
 }

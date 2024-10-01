@@ -6,8 +6,8 @@ const NavBar = () => {
     <div className={styles.nav}>
       <img src={NoteCodeLogo}></img>
       <div>
-        <p>Create & Share</p>
-        <p>Your Code easily</p>
+        <p className={styles.small_heading}>Create & Share</p>
+        <p className={styles.big_heading}>Your Code easily</p>
       </div>
     </div>
   );

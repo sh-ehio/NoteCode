@@ -1,4 +1,16 @@
 .main {
   max-width: 70%;
   width: 70%;
+  height: 600px;
+  align-self: flex-start;
+  justify-self: center;
+  padding-bottom: 60px;
+  max-height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+
+  &::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+  }
 }
