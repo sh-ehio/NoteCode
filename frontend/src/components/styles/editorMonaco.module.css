@@ -1,5 +1,5 @@
 .main {
-  padding: 60px 30px;
+  padding: 30px 30px;
   max-width: 70%;
   background-color: white;
   width: 70%;
@@ -27,6 +27,7 @@
   width: min-content;
   border-radius: 20px;
   padding: 10px 15px;
+  appearance: none;
 }
 
 .btn {
@@ -46,4 +47,14 @@
 .selectorholder {
   display: flex;
   column-gap: 10px;
+}
+
+.btn {
+  display: flex;
+  column-gap: 5px;
+  align-items: center;
+}
+
+.btn:hover {
+  background-color: #5a7dff;
 }
