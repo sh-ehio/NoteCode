@@ -1,16 +1,49 @@
 .main {
+  padding: 60px 30px;
   max-width: 70%;
+  background-color: white;
   width: 70%;
-  height: 600px;
+  border-radius: 5px;
+  margin-top: 20px;
   align-self: flex-start;
   justify-self: center;
-  padding-bottom: 60px;
-  max-height: 100vh;
   overflow-y: auto;
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: 2;
   scrollbar-width: none; /* For Firefox */
   -ms-overflow-style: none; /* For Internet Explorer and Edge */
 
   &::-webkit-scrollbar {
     display: none; /* For Chrome, Safari, and Opera */
   }
+}
+
+.select_input,
+.select_input_colortheme {
+  background-color: #ced6e1;
+  color: #121826;
+  border: none;
+  width: min-content;
+  border-radius: 20px;
+  padding: 10px 15px;
+}
+
+.btn {
+  background-color: #406aff;
+  color: #fffffe;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 20px;
+}
+
+.interaction {
+  padding-top: 75px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.selectorholder {
+  display: flex;
+  column-gap: 10px;
 }
