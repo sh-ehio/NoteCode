@@ -13,4 +13,14 @@ export class SnippetsService {
       where: snippetsWhereUniqueInput,
     });
   }
+
+  async createSnippet(value: string) {
+    const snippet = await this.prisma.snippets.create({
+      data: {
+        content: value,
+      },
+    });
+
+    return snippet;
+  }
 }

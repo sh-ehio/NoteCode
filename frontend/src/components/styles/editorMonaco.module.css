@@ -38,6 +38,14 @@
   border-radius: 20px;
 }
 
+.btn:disabled {
+  background-color: #5a5a5b;
+}
+
+.btn:disabled:hover {
+  background-color: #5a5a5b;
+}
+
 .interaction {
   padding-top: 75px;
   display: flex;

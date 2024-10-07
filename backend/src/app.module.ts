@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { SnippetsService } from './snippets/snippets.service';
+import { PrismaService } from './prisma.service';
 
 @Module({
   imports: [
@@ -11,6 +12,6 @@ import { SnippetsService } from './snippets/snippets.service';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService, SnippetsService],
+  providers: [AppService, SnippetsService, PrismaService],
 })
 export class AppModule {}

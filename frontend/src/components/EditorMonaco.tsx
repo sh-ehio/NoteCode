@@ -5,15 +5,37 @@ import ShareIcon from "../assets/Share.svg";
 
 const EditorMonaco = () => {
   const [language, setLanguage] = useState("javascript");
-  const [theme, setTheme] = useState("light");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setLanguage(e.target.value.toLowerCase());
     console.log(e.target.value.toLowerCase());
   };
 
-  const handleThemeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setTheme(e.target.value.toLowerCase());
+  const defaultValue = `<html>
+  <head>
+    <title>HTML Sample</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <style type="text/css">
+      h1 {
+        color: #CCA3A3;
+      }
+    </style>
+    <script type="text/javascript">
+      alert("I am a sample... visit devChallengs.io for more projects");
+    </script>
+  </head>
+  <body>
+    <h1>Heading No.1</h1>
+    <input disabled type="button" value="Click me" />
+  </body>
+</html>`;
+
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    console.log(e);
+    setIsButtonDisabled(!isButtonDisabled);
+
+
   };
 
   return (
@@ -22,8 +44,7 @@ const EditorMonaco = () => {
         height="40vh"
         defaultLanguage="javascript"
         language={language}
-        defaultValue="// some comment"
-        foreground={theme === "dark" ? "vs-dark" : "vs"}
+        defaultValue={defaultValue}
       />
       <div className={styles.interaction}>
         <div className={styles.selectorholder}>
@@ -39,7 +60,11 @@ const EditorMonaco = () => {
             <option value="json">JSON</option>
           </select>
         </div>
-        <button className={styles.btn}>
+        <button
+          className={styles.btn}
+          onClick={handleClick}
+          disabled={isButtonDisabled}
+        >
           <img src={ShareIcon}></img>Share
         </button>
       </div>
