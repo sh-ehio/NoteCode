@@ -40,7 +40,7 @@ const EditorMonaco = () => {
   useEffect(() => {
     if (id) {
       axios
-        .get(`${process.env.SERVER_ADDR}/${id}`)
+        .get(`https://notecode-k1uq.onrender.com/${id}`)
         .then((res) => {
           setLoadedSnippet(res.data?.content);
         })
@@ -62,7 +62,7 @@ const EditorMonaco = () => {
     if (editorValue) {
       setIsButtonDisabled(!isButtonDisabled);
       axios
-        .post(`${process.env.SERVER_ADDR}/create`, {
+        .post(`https://notecode-k1uq.onrender.com/create`, {
           content: editorValue,
         })
         .then((res) => {
