@@ -56,9 +56,6 @@ const EditorMonaco = () => {
   };
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
-    console.log(e);
-
-    console.log(process.env.SERVER_ADDR);
     if (editorValue) {
       setIsButtonDisabled(!isButtonDisabled);
       axios
