@@ -107,8 +107,8 @@ const EditorMonaco = () => {
             onChange={handleSelect}
             value={language}
           >
-            <option value="javascript">javascript</option>
             <option value="html">HTML</option>
+            <option value="javascript">javascript</option>
             <option value="typescript">typescript</option>
             <option value="css">CSS</option>
             <option value="json">JSON</option>
