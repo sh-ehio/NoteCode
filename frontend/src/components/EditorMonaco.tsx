@@ -1,5 +1,5 @@
 import Editor from "@monaco-editor/react";
-import styles from "./styles/EditorMonaco.module.css";
+import styles from "./styles/editorMonaco.module.css";
 import { useEffect, useState } from "react";
 import ShareIcon from "../assets/Share.svg";
 import axios from "axios";
