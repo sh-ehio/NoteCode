@@ -29,7 +29,7 @@ const defaultValue = `<html>
 const EditorMonaco = () => {
   const { id } = useParams();
   const [queryParameters] = useSearchParams();
-  const [language, setLanguage] = useState("javascript");
+  const [language, setLanguage] = useState("html");
   const [editorValue, setEditorValue] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(
     JSON.parse(queryParameters.get("isBd") || "false")
