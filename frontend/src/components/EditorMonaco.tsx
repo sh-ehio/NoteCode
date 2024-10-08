@@ -40,7 +40,7 @@ const EditorMonaco = () => {
   useEffect(() => {
     if (id) {
       axios
-        .get(`http://localhost:3000/${id}`)
+        .get(`${process.env.SERVER_ADDR}/${id}`)
         .then((res) => {
           setLoadedSnippet(res.data?.content);
         })
@@ -58,10 +58,11 @@ const EditorMonaco = () => {
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     console.log(e);
 
+    console.log(process.env.SERVER_ADDR);
     if (editorValue) {
       setIsButtonDisabled(!isButtonDisabled);
       axios
-        .post("http://localhost:3000/create", {
+        .post(`${process.env.SERVER_ADDR}/create`, {
           content: editorValue,
         })
         .then((res) => {
