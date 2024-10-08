@@ -7,7 +7,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { AppService } from './app.service';
-import { SnippetsService } from './snippets/snippets.service';
+import { SnippetsService } from './Snippets/snippets.service';
 import { CreateSnippetDTO } from './Snippets/dto/create-snippet.dto';
 
 @Controller()
