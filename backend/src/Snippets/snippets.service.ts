@@ -1,23 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
-import { Snippets, Prisma } from '@prisma/client';
+import { Snippets } from '@prisma/client';
+import { CreateSnippetDTO } from './dto/create-snippet.dto';
 
 @Injectable()
 export class SnippetsService {
   constructor(private prisma: PrismaService) {}
 
-  async snippet(
-    snippetsWhereUniqueInput: Prisma.SnippetsWhereUniqueInput,
-  ): Promise<Snippets | null> {
+  async snippet(id: number): Promise<Snippets | null> {
     return this.prisma.snippets.findUnique({
-      where: snippetsWhereUniqueInput,
+      where: { id },
     });
   }
 
-  async createSnippet(value: string) {
+  async createSnippet(value: CreateSnippetDTO) {
     const snippet = await this.prisma.snippets.create({
       data: {
-        content: value,
+        content: value.content,
       },
     });
 
