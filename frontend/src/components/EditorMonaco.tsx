@@ -1,9 +1,11 @@
 import Editor from "@monaco-editor/react";
 import styles from "./styles/EditorMonaco.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ShareIcon from "../assets/Share.svg";
 import axios from "axios";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import copy from "copy-to-clipboard";
+import LinkIcon from "../assets/link.svg";
 
 const defaultValue = `<html>
 <head>
@@ -25,12 +27,28 @@ const defaultValue = `<html>
 </html>`;
 
 const EditorMonaco = () => {
+  const { id } = useParams();
   const [queryParameters] = useSearchParams();
   const [language, setLanguage] = useState("javascript");
+  const [editorValue, setEditorValue] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(
-    queryParameters.get("isBd") || false
+    JSON.parse(queryParameters.get("isBd") || "false")
   );
   const navigate = useNavigate();
+  const [loadedSnippet, setLoadedSnippet] = useState(null);
+
+  useEffect(() => {
+    if (id) {
+      axios
+        .get(`http://localhost:3000/${id}`)
+        .then((res) => {
+          setLoadedSnippet(res.data?.content);
+        })
+        .catch((err) => {
+          console.error("Error fetching snippet:", err);
+        });
+    }
+  }, [id]);
 
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setLanguage(e.target.value.toLowerCase());
@@ -39,16 +57,41 @@ const EditorMonaco = () => {
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     console.log(e);
-    setIsButtonDisabled(!isButtonDisabled);
 
-    axios
-      .post("http://localhost:3000/create", {
-        content: "wait",
-      })
-      .then((res) => {
-        navigate(`/${res.data?.id}?isBd=true`);
-      });
+    if (editorValue) {
+      setIsButtonDisabled(!isButtonDisabled);
+      axios
+        .post("http://localhost:3000/create", {
+          content: editorValue,
+        })
+        .then((res) => {
+          console.log(res);
+          navigate(`/${res.data?.id}?isBd=true`);
+        });
+    } else {
+      alert("You need to change the snippet to share!");
+    }
   };
+
+  const handleEditorChange = (value: any, event: any) => {
+    setEditorValue(value);
+    setIsButtonDisabled(false);
+  };
+
+  if (id && !loadedSnippet) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <p>Loading....</p>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.main}>
@@ -56,7 +99,8 @@ const EditorMonaco = () => {
         height="40vh"
         defaultLanguage="javascript"
         language={language}
-        defaultValue={defaultValue}
+        value={loadedSnippet !== null ? loadedSnippet : defaultValue}
+        onChange={handleEditorChange}
       />
       <div className={styles.interaction}>
         <div className={styles.selectorholder}>
@@ -72,14 +116,26 @@ const EditorMonaco = () => {
             <option value="json">JSON</option>
           </select>
         </div>
-        {isButtonDisabled && <p>HELLLLOOOOO</p>}
-        <button
-          className={styles.btn}
-          onClick={handleClick}
-          disabled={isButtonDisabled}
-        >
-          <img src={ShareIcon}></img>Share
-        </button>
+        <div className={styles.share_section}>
+          {isButtonDisabled && (
+            <div
+              onClick={() => {
+                copy(window.location.href);
+              }}
+              className={styles.link_sharing}
+            >
+              <img src={LinkIcon} alt="Link icon"></img>
+              <p>{window.location.href}</p>
+            </div>
+          )}
+          <button
+            className={styles.btn}
+            onClick={handleClick}
+            disabled={isButtonDisabled}
+          >
+            <img src={ShareIcon}></img>Share
+          </button>
+        </div>
       </div>
     </div>
   );
