@@ -55,7 +55,7 @@ const EditorMonaco = () => {
     console.log(e.target.value.toLowerCase());
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+  const handleClick = () => {
     if (editorValue) {
       setIsButtonDisabled(!isButtonDisabled);
       axios
@@ -71,7 +71,7 @@ const EditorMonaco = () => {
     }
   };
 
-  const handleEditorChange = (value: any, event: any) => {
+  const handleEditorChange = (value: any) => {
     setEditorValue(value);
     setIsButtonDisabled(false);
   };
